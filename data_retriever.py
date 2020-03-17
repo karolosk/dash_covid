@@ -5,11 +5,13 @@ import os.path
 import csv
 
 def get_all_data():
-    response = requests.get('https://coronavirus-19-api.herokuapp.com/all')
+    response = requests.get('https://corona.lmao.ninja/all')
     keys = []
     values = []
 
     for key,value in json.loads(response.text).items():
+        if key == 'updated':
+            continue
         keys.append(key)
         values.append(add_thousand_separator(value))
     

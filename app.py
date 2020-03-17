@@ -19,8 +19,6 @@ create_data_file()
 df = pd.read_csv('coronavirus_data_file_' + str(date.today()) + '.csv')
 
 
-
-
 app.layout = html.Div([
 
     html.Div(

@@ -6,21 +6,21 @@ Spain,11409,1467,509,167,1028,563
 S. Korea,8320,84,81,6,1401,59
 Germany,8084,812,20,3,67,2
 France,6633,0,148,0,12,400
-USA,4752,89,93,7,74,12
+USA,4808,145,94,8,74,12
 Switzerland,2672,319,21,2,4,0
+UK,1950,407,55,0,52,20
 Netherlands,1705,292,43,19,2,45
-UK,1543,0,55,0,52,20
 Norway,1437,89,3,0,1,27
+Austria,1332,314,4,1,8,12
 Belgium,1243,185,10,0,14,33
-Austria,1211,193,4,1,8,12
-Sweden,1175,54,7,0,1,12
+Sweden,1190,69,7,0,1,12
 Denmark,960,46,4,0,1,18
 Japan,876,43,28,0,144,41
 Diamond Princess,696,0,7,0,456,15
 Malaysia,673,107,2,2,49,10
 Australia,452,51,5,0,27,1
 Portugal,448,117,1,0,3,18
-Canada,441,0,4,0,11,1
+Canada,440,0,4,0,11,1
 Qatar,439,0,0,0,4,0
 Czechia,396,52,0,0,3,2
 Greece,352,0,4,0,10,5
@@ -52,7 +52,7 @@ Peru,117,31,0,0,1,8
 Russia,114,21,0,0,8,0
 San Marino,102,0,9,2,4,11
 UAE,98,0,0,0,26,2
-Slovakia,84,12,0,0,0,0
+Slovakia,84,12,0,0,0,2
 Mexico,82,29,0,0,4,1
 Taiwan,77,10,1,0,20,0
 Armenia,72,20,0,0,1,2
@@ -73,7 +73,7 @@ Hungary,50,11,1,0,2,0
 Faeroe Islands,47,29,0,0,0,0
 Turkey,47,0,0,0,0,0
 Cyprus,46,0,0,0,0,1
-Sri Lanka,43,15,0,0,1,0
+Sri Lanka,44,16,0,0,1,0
 Costa Rica,41,0,0,0,0,3
 Palestine,41,2,0,0,0,0
 Morocco,38,1,2,1,1,1
@@ -81,6 +81,7 @@ Malta,38,8,0,0,2,0
 Belarus,36,0,0,0,3,0
 Jordan,35,6,0,0,1,0
 Georgia,34,1,0,0,1,1
+Cambodia,33,21,0,0,1,0
 Kazakhstan,33,23,0,0,0,0
 Venezuela,33,16,0,0,0,0
 Moldova,30,1,0,0,1,1
@@ -89,7 +90,6 @@ Azerbaijan,28,3,1,0,6,0
 Senegal,27,0,0,0,2,0
 Bosnia and Herzegovina,27,2,0,0,2,0
 North Macedonia,26,2,0,0,1,1
-Cambodia,24,12,0,0,1,0
 Oman,24,0,0,0,12,0
 Tunisia,24,0,0,0,1,2
 Afghanistan,22,1,0,0,1,0
