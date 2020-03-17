@@ -2,9 +2,9 @@ country,cases,todayCases,deaths,todayDeaths,recovered,critical
 China,80881,21,3226,13,68715,3226
 Italy,27980,0,2158,0,2749,1851
 Iran,16169,1178,988,135,5389,0
-Spain,11409,1467,499,157,1028,563
+Spain,11409,1467,509,167,1028,563
 S. Korea,8320,84,81,6,1401,59
-Germany,7974,702,20,3,67,2
+Germany,8084,812,20,3,67,2
 France,6633,0,148,0,12,400
 USA,4748,85,93,7,74,12
 Switzerland,2672,319,21,2,4,0
@@ -26,7 +26,7 @@ Czechia,396,52,0,0,3,2
 Greece,352,0,4,0,10,5
 Israel,324,26,0,0,11,4
 Finland,322,44,0,0,10,2
-Brazil,301,67,0,0,2,18
+Brazil,301,67,1,1,2,18
 Slovenia,273,20,1,0,0,4
 Singapore,266,23,0,0,114,14
 Bahrain,237,9,1,0,81,3
@@ -73,13 +73,13 @@ Hungary,50,11,1,0,2,0
 Faeroe Islands,47,29,0,0,0,0
 Turkey,47,0,0,0,0,0
 Cyprus,46,0,0,0,0,1
+Sri Lanka,43,15,0,0,1,0
 Costa Rica,41,0,0,0,0,3
 Palestine,41,2,0,0,0,0
 Morocco,38,1,2,1,1,1
 Malta,38,8,0,0,2,0
 Belarus,36,0,0,0,3,0
 Jordan,35,6,0,0,1,0
-Sri Lanka,35,7,0,0,1,0
 Georgia,34,1,0,0,1,1
 Kazakhstan,33,23,0,0,0,0
 Venezuela,33,16,0,0,0,0
