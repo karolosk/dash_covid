@@ -9,7 +9,10 @@ from data_retriever import get_all_data, get_all_country_data, get_all_country_d
 
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+server = app.server
+
 global_data = get_all_data()
 country_data = get_all_country_data()
 create_data_file()
