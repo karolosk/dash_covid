@@ -42,8 +42,10 @@ def get_data_per_country():
     
 def create_data_file():
     filename = 'coronavirus_data_file_' + str(date.today()) + '.csv'
-    if os.path.isfile(filename):
-        return
+    
+    # Recheck
+    # if os.path.isfile(filename):
+    #     return
     response = requests.get('https://corona.lmao.ninja/countries')
     response_to_list = json.loads(response.text)
     keys = response_to_list[0].keys()

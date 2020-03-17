@@ -18,26 +18,52 @@ df = pd.read_csv('coronavirus_data_file_' + str(date.today()) + '.csv')
 
 
 
-app.layout = html.Div(children=[
-    html.H1(children='Coronavirus Vizualization using Dash'),
+app.layout = html.Div([
 
-    html.Div(children='''
-        Data is retrieved from: https://github.com/javieraviles/covidAPI.
-    '''),
-
-    dcc.Graph(
-        id='example-graph',
-        figure={
-            'data': [
-                {'x': global_data[0], 'y': global_data[1], 'type': 'bar', 'name': 'Global'},
-            ],
-            'layout': {
-                'title': 'Global Cases',
-            }
-        }
+    html.Div(
+        className="app-header",
+        children=[
+            html.Div('Coronavirus Data', className="app-header--title"),
+            html.Div('Vizualization using Dash',  className="app-header--subtitle"),
+        ]
     ),
-      
 
+
+
+    html.Div(
+        children=[
+            html.Div(
+                className="total-info",
+                children=[
+                    html.H4("Global Data"),
+                    html.P("Total " + str(global_data[0][0]) + ": " + str(global_data[1][0])),
+                    html.P("Total " + str(global_data[0][1]) + ": " + str(global_data[1][1])),
+                    html.P("Total " + str(global_data[0][2]) + ": " + str(global_data[1][2])),
+                ]
+            ),
+            
+            html.Div(
+                className="total-graph",
+                children=[
+                    dcc.Graph(
+                    id='example-graph',
+                    figure={
+                        'data': [
+                            {'x': global_data[0], 'y': global_data[1], 'type': 'bar', 'name': 'Global'},
+                        ],
+                        'layout': {
+                            
+                        }
+                    }
+                ),
+                ]
+            ),
+
+        ]
+    ),
+
+      
+    html.H4("Country Data"),
     dash_table.DataTable(
         id='global-data-table',
         columns=[{"name": i, "id": i} for i in df.columns],
@@ -66,15 +92,6 @@ app.layout = html.Div(children=[
     [Input('global-data-table', "derived_virtual_data"),
      Input('global-data-table', "derived_virtual_selected_rows")])
 def update_graphs(rows, derived_virtual_selected_rows):
-    # When the table is first rendered, `derived_virtual_data` and
-    # `derived_virtual_selected_rows` will be `None`. This is due to an
-    # idiosyncracy in Dash (unsupplied properties are always None and Dash
-    # calls the dependent callbacks when the component is first rendered).
-    # So, if `rows` is `None`, then the component was just rendered
-    # and its value will be the same as the component's dataframe.
-    # Instead of setting `None` in here, you could also set
-    # `derived_virtual_data=df.to_rows('dict')` when you initialize
-    # the component.
     if derived_virtual_selected_rows is None:
         derived_virtual_selected_rows = []
 
