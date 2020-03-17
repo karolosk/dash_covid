@@ -12,7 +12,7 @@ def get_all_data():
 
     for key,value in json.loads(response.text).items():
         if key == 'updated':
-            updated_at = datetime.fromtimestamp(value/1000).strftime('%Y-%m-%d %H:%M:%S GMT+02:00')
+            updated_at = datetime.fromtimestamp(value/1000).strftime('%Y-%m-%d %H:%M:%S GMT')
 
             continue
             
