@@ -1,36 +1,77 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700');
+
 body {
+    background-color:  #F7F8F9    ;
     font-family: 'Montserrat', sans-serif;
     font-size: 20px;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    padding: 0;
 }
 
 .app-header {
-    height: 80px;
-    border-bottom: thin lightgrey solid;
+    background: #FFFFFF;
+    box-shadow: 0 0 50px 0 #D7DCDD;
+    padding: 5px;
 }
 
-.app-header .app-header--title {
+.title {
     font-size: 26px;
-    padding-left: 5px;
-    font-weight: bolder;
+    line-height: 26px;
+    font-weight: 600;
 }
 
-.app-header .app-header--subtitle {
-    font-size: 22px;
-    padding-left: 5px;
-    font-weight: bold;
+.subtitle {
+    font-size: 19px;
+    font-weight: 300;
 }
 
 .app-info {
     padding-left: 5px;
 }
 
-.app-footer {
-    border-top: thin lightgrey solid;
-    font-size: 14px;
-    text-align: center;
-    font-weight: lighter; 
+.data-table {
+    width: 1000px;
+    margin: 0 auto;
 }
 
-.total-info, .country-info {
+table {
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 14px !important;
+}
+
+.total-graph {
+    margin: 0 auto 20px auto;
+    width: 1000px;
+    /* padding: 0px 200px; */
+}
+
+.total-info {
     text-align: center;
+    margin: 20px 0;
+}
+
+.total-info-label {
+    font-weight: 600;
+    font-size: 12px;
+    color: #AEB6B8;
+}
+
+
+.total-info-data {
+    font-size: 22px;
+    font-weight: 600;
+    color: #3B4446;
+    margin-bottom: 10px;
+}
+
+.total-info-date {
+    font-size: 11px;
+    font-weight: 600;
+    color: #3B4446;
+}
+
+p {
+    margin: 0;
+    padding: 0;
 }
