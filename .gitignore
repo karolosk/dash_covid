@@ -104,4 +104,5 @@ venv.bak/
 
 # mypy
 .mypy_cache/
-coronavirus_data_file_2020-03-17.csv
+
+*.csv
