@@ -11,9 +11,12 @@ def get_all_data():
 
     for key,value in json.loads(response.text).items():
         keys.append(key)
-        values.append(value)
+        values.append(add_thousand_separator(value))
+    
     return[keys, values]
 
+def add_thousand_separator(value):
+    return format(value, ',d')
 
 def get_all_country_data():
     response = requests.get('https://corona.lmao.ninja/countries')
