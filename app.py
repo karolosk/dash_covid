@@ -5,7 +5,7 @@ import dash_html_components as html
 import dash_table
 import pandas as pd
 from datetime import date
-from data_retriever import get_all_data, get_all_country_data, get_all_country_data_as_json, get_data_keys, create_data_file
+from data_retriever import get_all_data, create_data_file
 
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
@@ -15,10 +15,9 @@ app.title = 'dash-covid'
 
 server = app.server
 global_data = get_all_data()
-country_data = get_all_country_data()
+
 create_data_file()
 df = pd.read_csv('coronavirus_data_file_' + str(date.today()) + '.csv')
-
 
 app.layout = html.Div([
 
@@ -29,8 +28,6 @@ app.layout = html.Div([
             html.Div('Vizualization using Dash',  className="app-header--subtitle"),
         ]
     ),
-
-
 
     html.Div(
         children=[
