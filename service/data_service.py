@@ -13,9 +13,9 @@ def get_all_data():
     for key,value in json.loads(response.text).items():
         if key == 'updated':
             updated_at = datetime.fromtimestamp(value/1000).strftime('%Y-%m-%d %H:%M:%S GMT')
-
             continue
-            
+        else:
+            updated_at = date.today()
         keys.append(key)
         values.append(add_thousand_separator(value))
     
@@ -31,7 +31,6 @@ def create_data_file():
     #     return
     response = requests.get('https://corona.lmao.ninja/countries')
     response_to_list = json.loads(response.text)
-    print(response_to_list)
     keys = response_to_list[0].keys()
     # setting up encoding to avoid  UnicodeEncodeError 
     # newline = ' to avoid having blank lines between lines
