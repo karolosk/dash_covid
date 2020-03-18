@@ -3,10 +3,8 @@ import dash_core_components as dcc
 import dash_html_components as html
 import dash_table
 from dash_table.Format import Format
-from datetime import date
-from data_service import get_all_data, get_data
-from who_service import get_timeline
 import pandas as pd 
+from service.service import get_global_data, get_table_data, get_timeline_dataframe
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
@@ -14,9 +12,10 @@ app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 app.title = 'dash-covid'
 
 server = app.server
-global_data = get_all_data()
 
-df = get_data()
+global_data = get_global_data()
+datatable_dataframe = get_table_data()
+timeline_data = get_timeline_dataframe()
 
 app.layout = html.Div([
 
@@ -65,27 +64,40 @@ app.layout = html.Div([
             html.Div(
                 className="total-graph",
                 children = [
-                dcc.Graph(
+                    dcc.Graph(
                         figure=dict(
                             data=[
                                 dict(
-                                    data = [1,2,3],
-                                    name='Cases',
+                                    x= timeline_data.index.values.tolist(),
+                                    y=timeline_data['deaths'].tolist(),
+                                    name='Deaths',
                                     marker=dict(
-                                        color='rgb(55, 83, 109)'
+                                        color='rgb(177, 35, 5)'
                                     )
                                 ),
                                 dict(
-                                    data = get_timeline(),
-                                    name='Deaths',
+                                    x= timeline_data.index.values.tolist(),
+                                    y=timeline_data['recovered'].tolist(),
+                                    name='Recovered',
+                                    marker=dict(
+                                        color='rgb(126, 170, 121)'
+                                    )
+                                ),
+                                dict(
+                                    x= timeline_data.index.values.tolist(),
+                                    y=timeline_data['confirmed'].tolist(),
+                                    name='Cases',
                                     marker=dict(
                                         color='rgb(26, 118, 255)'
-                                    )
+                                    ),
                                 )
                             ],
                             layout=dict(
                                 title='Timeline',
                                 showlegend=True,
+                                xaxis=dict(
+                                    showticklabels=False
+                                ),
                                 legend=dict(
                                     x=0,
                                     y=1.0
@@ -93,9 +105,8 @@ app.layout = html.Div([
                                 margin=dict(l=40, r=0, t=40, b=30)
                             )
                         ),
-                        style={'height': 300},
-                        id='my-graph'
-                    )
+                        id='timeline-graph'
+                    )  
                 ]
             )
         ]
@@ -106,9 +117,9 @@ app.layout = html.Div([
             dash_table.DataTable(
                 id='global-data-table',
                 columns=[
-                        {"name": i, "id": i, 'type': 'numeric', 'format': Format(group=',')} for i in df.columns
+                        {"name": i, "id": i, 'type': 'numeric', 'format': Format(group=',')} for i in datatable_dataframe.columns
                     ],
-                data=df.to_dict('records'),
+                data=datatable_dataframe.to_dict('records'),
                 filter_action="native",
                 sort_action="native",
                 sort_mode="multi",

@@ -31,6 +31,7 @@ def create_data_file():
     #     return
     response = requests.get('https://corona.lmao.ninja/countries')
     response_to_list = json.loads(response.text)
+    print(response_to_list)
     keys = response_to_list[0].keys()
     # setting up encoding to avoid  UnicodeEncodeError 
     # newline = ' to avoid having blank lines between lines
