@@ -1,12 +1,12 @@
 import dash
-from dash.dependencies import Input, Output
 import dash_core_components as dcc
 import dash_html_components as html
 import dash_table
 from dash_table.Format import Format
 from datetime import date
-from data_retriever import get_all_data, get_data
-
+from data_service import get_all_data, get_data
+from who_service import get_timeline
+import pandas as pd 
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
@@ -49,19 +49,55 @@ app.layout = html.Div([
                 className="total-graph",
                 children=[
                     dcc.Graph(
-                    id='example-graph',
-                    figure={
-                        'data': [
-                            {'x': global_data[0], 'y': global_data[1], 'type': 'bar', 'name': 'Global'},
-                        ],
-                        'layout': {
-                            
-                        }
-                    }
-                ),
+                        id='example-graph',
+                        figure={
+                            'data': [{'x': global_data[0], 'y': global_data[1], 'type': 'bar', 'name': 'Global'},],
+                            'layout': {}
+                        },
+                    ),
                 ]
             ),
-
+        ]
+    ),
+    
+    html.Div(
+        children = [
+            html.Div(
+                className="total-graph",
+                children = [
+                dcc.Graph(
+                        figure=dict(
+                            data=[
+                                dict(
+                                    data = [1,2,3],
+                                    name='Cases',
+                                    marker=dict(
+                                        color='rgb(55, 83, 109)'
+                                    )
+                                ),
+                                dict(
+                                    data = get_timeline(),
+                                    name='Deaths',
+                                    marker=dict(
+                                        color='rgb(26, 118, 255)'
+                                    )
+                                )
+                            ],
+                            layout=dict(
+                                title='Timeline',
+                                showlegend=True,
+                                legend=dict(
+                                    x=0,
+                                    y=1.0
+                                ),
+                                margin=dict(l=40, r=0, t=40, b=30)
+                            )
+                        ),
+                        style={'height': 300},
+                        id='my-graph'
+                    )
+                ]
+            )
         ]
     ),
 

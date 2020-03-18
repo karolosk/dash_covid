@@ -70,3 +70,4 @@ def rename_columns(dataframe):
 def add_thousand_separator(value):
     return format(value, ',d')
 
+
