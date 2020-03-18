@@ -13,9 +13,9 @@ def get_all_data():
     for key,value in json.loads(response.text).items():
         if key == 'updated':
             updated_at = datetime.fromtimestamp(value/1000).strftime('%Y-%m-%d %H:%M:%S GMT')
-
             continue
-            
+        else:
+            updated_at = date.today()
         keys.append(key)
         values.append(add_thousand_separator(value))
     
@@ -69,4 +69,5 @@ def rename_columns(dataframe):
 
 def add_thousand_separator(value):
     return format(value, ',d')
+
 
