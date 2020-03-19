@@ -73,6 +73,8 @@ Application will start at port 8050
 
 ## Heroku deployment
 
+Standard Heroku deployment, pulling from master on eah commit.
 
-[App Link](https://dash-covid.herokuapp.com)
+Application can be found here: 
+[Dash-Covid](https://dash-covid.herokuapp.com)
 

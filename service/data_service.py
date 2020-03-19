@@ -45,6 +45,10 @@ def modify_data_frame():
     
     # Rename columns
     df_new = rename_columns(df)
+
+    # Remove extra columns
+    df_new.drop(['active', 'casesPerOneMillion'], axis=1, inplace=True)
+
     # Save to csv
     df_new.to_csv('coronavirus_data_file_' + str(date.today()) + '.csv', index=False)
 
