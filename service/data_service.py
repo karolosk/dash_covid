@@ -30,7 +30,16 @@ def create_data_file():
     # if os.path.isfile(filename):
     #     return
     response = requests.get('https://corona.lmao.ninja/countries')
+    # Check if we got valid response and if not then do nothing and just use previous file
+    if (response.status_code != 200):
+        return
+    
     response_to_list = json.loads(response.text)
+    
+    # Check if we get empty response and then do nothing and just use previous file
+    if (len(response_to_list) == 0):
+        return
+
     keys = response_to_list[0].keys()
     # setting up encoding to avoid  UnicodeEncodeError 
     # newline = ' to avoid having blank lines between lines
