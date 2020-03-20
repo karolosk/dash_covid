@@ -6,12 +6,44 @@ from dash_table.Format import Format
 import pandas as pd 
 from service.service import get_global_data, get_table_data, get_timeline_dataframe
 
+
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+external_scripts = [
+
+]
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
-app.title = 'dash-covid'
 
 server = app.server
+
+
+app.index_string = """<!DOCTYPE html>
+<html>
+    <head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-161477467-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-161477467-1');
+        </script>
+
+        {%metas%}
+        <title>dash-covid</title>
+        {%favicon%}
+        {%css%}
+    </head>
+    <body>
+        {%app_entry%}
+        <footer>
+            {%config%}
+            {%scripts%}
+            {%renderer%}
+        </footer>
+    </body>
+</html>"""
+
 
 global_data = get_global_data()
 datatable_dataframe = get_table_data()
