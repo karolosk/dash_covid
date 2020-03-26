@@ -6,8 +6,8 @@ import csv
 
 
 def get_who_data(filetype):
-    who_csv_raw_url = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-{file_name}.csv'.format(file_name=filetype.title())
-
+    # who_csv_raw_url = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-{file_name}_global.csv'.format(file_name=filetype.title())
+    who_csv_raw_url = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_{file_name}_global.csv'.format(file_name=filetype.lower())
     file_to_generate = 'local_' +filetype.lower() + '_' + str(date.today()) + '.csv'
 
     if not file_exist(file_to_generate):
