@@ -16,7 +16,6 @@ def get_all_data():
 
         if key == 'updated':
             updated_at = datetime.fromtimestamp(value/1000).strftime('%Y-%m-%d %H:%M:%S GMT')
-        else:    
             continue
         
         keys.append(key)

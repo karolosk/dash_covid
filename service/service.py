@@ -18,7 +18,7 @@ def get_percentage_labels(data_list):
     labels.append(cases)
 
     num_cases = cases.replace(',','')
-    print(cases)
+
     for value in data_list[1][1:]:
 
         num_value = value.replace(',','')

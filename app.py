@@ -48,8 +48,6 @@ app.index_string = """<!DOCTYPE html>
 global_data = get_global_data()
 datatable_dataframe = get_table_data()
 timeline_data = get_timeline_dataframe()
-
-
 percentage_labels = get_percentage_labels(global_data)
 
 
