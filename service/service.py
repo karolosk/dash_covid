@@ -9,3 +9,19 @@ def get_global_data():
 
 def get_table_data():
     return get_data()
+
+def get_percentage_labels(data_list):
+    labels = []
+    
+    # adding label for all cases
+    cases = data_list[1][0]
+    labels.append(cases)
+
+    num_cases = cases.replace(',','')
+    print(cases)
+    for value in data_list[1][1:]:
+
+        num_value = value.replace(',','')
+        labels.append(value +' ('+ str(round(100 * (float(num_value)/float(num_cases)) ,2)) +  '%)')
+
+    return labels
