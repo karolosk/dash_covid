@@ -6,22 +6,31 @@ import csv
 import pandas as pd
 
 def get_all_data():
+    
     response = requests.get('https://corona.lmao.ninja/all')
     keys = []
     values = []
-
+    
     for key,value in json.loads(response.text).items():
+    
+
         if key == 'updated':
             updated_at = datetime.fromtimestamp(value/1000).strftime('%Y-%m-%d %H:%M:%S GMT')
+        else:    
             continue
-        else:
-            updated_at = date.today()
+        
         keys.append(key)
         values.append(add_thousand_separator(value))
-    
+
+
     return[keys, values, updated_at]
 
 
+def create_bar_chart_data():
+    pass
+    # data = [keys, values]
+    # df = pd.DataFrame.from_records(data[1:], columns=data[0])
+    # print(df.head())
 
 def create_data_file():
     filename = 'coronavirus_data_file_' + str(date.today()) + '.csv'
@@ -55,8 +64,11 @@ def modify_data_frame():
     # Rename columns
     df_new = rename_columns(df)
 
+    normalize_country_names(df_new)
     # Remove extra columns
     df_new.drop(['active', 'countryInfo', 'deathsPerOneMillion'], axis=1, inplace=True)
+
+    df_new['Mortality Rate'] = round((df_new['Deaths']/df_new['Cases']) * 100, 2)
 
     # Save to csv
     df_new.to_csv('coronavirus_data_file_' + str(date.today()) + '.csv', index=False)
@@ -67,6 +79,15 @@ def get_data():
     return pd.read_csv('coronavirus_data_file_' + str(date.today()) + '.csv')
 
 
+def normalize_country_names(dataframe):
+    
+    dataframe['Country'].replace(['Congo, the Democratic Republic of the'], 'Congo', inplace=True)
+    dataframe['Country'].replace(['Tanzania, United Republic of'], 'Tanzania', inplace=True)
+    dataframe['Country'].replace(['Venezuela, Bolivarian Republic of'], 'Venezuela', inplace=True)
+    dataframe['Country'].replace(['Lao People\'s Democratic Republic'], 'Laos', inplace=True)
+    dataframe['Country'].replace(['Saint Vincent and the Grenadines'], 'St Vincent and the Grenadines', inplace=True)
+
+    
 def rename_columns(dataframe):
     return dataframe.rename(columns={
         'country': 'Country',

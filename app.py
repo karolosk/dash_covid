@@ -4,7 +4,7 @@ import dash_html_components as html
 import dash_table
 from dash_table.Format import Format
 import pandas as pd 
-from service.service import get_global_data, get_table_data, get_timeline_dataframe
+from service.service import get_global_data, get_table_data, get_timeline_dataframe, get_percentage_labels
 
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
@@ -49,6 +49,10 @@ global_data = get_global_data()
 datatable_dataframe = get_table_data()
 timeline_data = get_timeline_dataframe()
 
+
+percentage_labels = get_percentage_labels(global_data)
+
+
 app.layout = html.Div([
 
     html.Div(
@@ -82,8 +86,18 @@ app.layout = html.Div([
                     dcc.Graph(
                         id='example-graph',
                         figure={
-                            'data': [{'x': global_data[0], 'y': global_data[1], 'type': 'bar', 'name': 'Global'},],
-                            'layout': {}
+                            'data': [{
+                                'x': global_data[0], 
+                                'y': global_data[1], 
+                                'text': percentage_labels,
+                                'textposition':'auto',
+                                'type': 'bar', 
+                                'name': 'Global',
+                                'marker': {'color': ['rgb(26, 118, 255)', 'rgb(177, 35, 5)', 'rgb(126, 170, 121)', 'rgb(255, 102, 0)']} 
+                            },],
+                            'layout': {
+                                'annotations':'annotations'
+                            }
                         },
                     ),
                 ]
