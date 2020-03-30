@@ -69,8 +69,14 @@ def modify_data_frame():
 
     df_new['Mortality Rate'] = round((df_new['Deaths']/df_new['Cases']) * 100, 2)
 
+    # Keeping only columns that we want to show in data table
+    df_final = df_new.filter(['Country', 'Cases', 'Deaths', 'Today Cases', 'Today Deaths', 'Recovered', 'Critical', 'Cases per million', 'Mortality Rate'])
+
+    # Sort by cases
+    df_final.sort_values(by=['Cases'], ascending=False, inplace=True)
+
     # Save to csv
-    df_new.to_csv('coronavirus_data_file_' + str(date.today()) + '.csv', index=False)
+    df_final.to_csv('coronavirus_data_file_' + str(date.today()) + '.csv', index=False)
 
 def get_data():
     create_data_file()
