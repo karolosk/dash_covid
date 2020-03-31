@@ -12,7 +12,9 @@ def get_all_data():
     values = []
     
     for key,value in json.loads(response.text).items():
-    
+        
+        if key == 'affectedCountries':
+            continue
 
         if key == 'updated':
             updated_at = datetime.fromtimestamp(value/1000).strftime('%Y-%m-%d %H:%M:%S GMT')
