@@ -11,9 +11,10 @@ def get_all_data():
     keys = []
     values = []
     
+
     for key,value in json.loads(response.text).items():
         
-        if key == 'affectedCountries':
+        if key in ['affectedCountries', 'casesPerOneMillion', 'testsPerOneMillion', 'tests', 'deathsPerOneMillion']:
             continue
 
         if key == 'updated':
