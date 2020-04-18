@@ -7,14 +7,13 @@ import pandas as pd
 
 def get_all_data():
     
-    response = requests.get('https://corona.lmao.ninja/all')
+    response = requests.get('https://corona.lmao.ninja/v2/all')
     keys = []
     values = []
     
-
     for key,value in json.loads(response.text).items():
         
-        if key in ['affectedCountries', 'casesPerOneMillion', 'testsPerOneMillion', 'tests', 'deathsPerOneMillion', 'todayDeaths', 'todayCases', 'critical']:
+        if key in ['continent','affectedCountries', 'casesPerOneMillion', 'testsPerOneMillion', 'tests', 'deathsPerOneMillion', 'todayDeaths', 'todayCases', 'critical']:
             continue
 
         if key == 'updated':
@@ -22,6 +21,7 @@ def get_all_data():
             continue
         
         keys.append(key)
+        print(value)
         values.append(add_thousand_separator(value))
 
 
@@ -40,7 +40,7 @@ def create_data_file():
     # Recheck
     # if os.path.isfile(filename):
     #     return
-    response = requests.get('https://corona.lmao.ninja/countries')
+    response = requests.get('https://corona.lmao.ninja/v2/countries')
     # Check if we got valid response and if not then do nothing and just use previous file
     if (response.status_code != 200):
         return
