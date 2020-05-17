@@ -12,19 +12,20 @@ def get_all_data():
     values = []
     
     for key,value in json.loads(response.text).items():
-        
-        if key in ['continent','affectedCountries', 'casesPerOneMillion', 'testsPerOneMillion', 'tests', 'deathsPerOneMillion', 'todayDeaths', 'todayCases', 'critical']:
-            continue
 
-        if key == 'updated':
+        if key in ['cases', 'deaths', 'recovered', 'active']:
+
+            keys.append(key)
+            values.append(add_thousand_separator(value))
+
+        elif key == 'updated':
+
             updated_at = datetime.fromtimestamp(value/1000).strftime('%Y-%m-%d %H:%M:%S GMT')
             continue
-        
-        keys.append(key)
-        print(value)
-        values.append(add_thousand_separator(value))
-
-
+            
+        else:
+            continue
+            # excluded keys : ['population', 'activePerOneMillion', 'continent','affectedCountries', 'casesPerOneMillion', 'testsPerOneMillion', 'tests', 'deathsPerOneMillion', 'todayDeaths', 'todayCases', 'critical']    
     return[keys, values, updated_at]
 
 
