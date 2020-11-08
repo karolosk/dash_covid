@@ -87,7 +87,6 @@ def modify_data_frame():
     # Keeping only columns that we want to show in data table
     df_final = df_new.filter(
         [
-            "A",
             "Country",
             "Cases",
             "Deaths",
