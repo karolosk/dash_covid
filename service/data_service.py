@@ -4,6 +4,7 @@ from datetime import date, datetime
 import os.path
 import csv
 import pandas as pd
+import numpy as np
 
 
 def get_all_data():
@@ -86,6 +87,7 @@ def modify_data_frame():
     # Keeping only columns that we want to show in data table
     df_final = df_new.filter(
         [
+            "A",
             "Country",
             "Cases",
             "Deaths",
@@ -100,6 +102,8 @@ def modify_data_frame():
 
     # Sort by cases
     df_final.sort_values(by=["Cases"], ascending=False, inplace=True)
+
+    df_final.insert(loc=0, column="Index", value=(np.arange(len(df))) + 1)
 
     # Save to csv
     df_final.to_csv("coronavirus_data_file_" + str(date.today()) + ".csv", index=False)
