@@ -48,7 +48,7 @@ app.index_string = """<!DOCTYPE html>
 global_data = get_global_data()
 datatable_dataframe = get_table_data()
 timeline_data = get_timeline_dataframe()
-percentage_labels = get_percentage_labels(global_data)
+# percentage_labels = get_percentage_labels(global_data)
 
 
 app.layout = html.Div([
@@ -61,47 +61,47 @@ app.layout = html.Div([
         ]
     ),
 
-    html.Div(
-        children=[
-        
-            html.Div(
-                className="total-info",
-                children=[
-                    html.P("TOTAL " + str(global_data[0][0]).upper(), className="total-info-label"),
-                    html.P(str(global_data[1][0]), className="total-info-data"),
-                    html.P("TOTAL " + str(global_data[0][1]).upper(), className="total-info-label"),
-                    html.P(str(global_data[1][1]), className="total-info-data"),
-                    html.P("TOTAL " + str(global_data[0][2]).upper(), className="total-info-label"),
-                    html.P(str(global_data[1][2]), className="total-info-data"),
-                    html.P("UPDATED AT", className="total-info-label"),
-                    html.P( global_data[2], className="total-info-date"),
-                ]
-            ),
-            
-            html.Div(
-                className="total-graph",
-                children=[
-                    dcc.Graph(
-                        id='example-graph',
-                        figure={
-                            'data': [{
-                                'x': global_data[0], 
-                                'y': global_data[1], 
-                                'text': percentage_labels,
-                                'textposition':'auto',
-                                'type': 'bar', 
-                                'name': 'Global',
-                                'marker': {'color': ['rgb(26, 118, 255)', 'rgb(177, 35, 5)', 'rgb(126, 170, 121)', 'rgb(255, 102, 0)']} 
-                            },],
-                            'layout': {
-                                'annotations':'annotations'
-                            }
-                        },
-                    ),
-                ]
-            ),
-        ]
-    ),
+    # html.Div(
+    #     children=[
+    #
+    #         html.Div(
+    #             className="total-info",
+    #             children=[
+    #                 html.P("TOTAL " + str(global_data[0][0]).upper(), className="total-info-label"),
+    #                 html.P(str(global_data[1][0]), className="total-info-data"),
+    #                 html.P("TOTAL " + str(global_data[0][1]).upper(), className="total-info-label"),
+    #                 html.P(str(global_data[1][1]), className="total-info-data"),
+    #                 html.P("TOTAL " + str(global_data[0][2]).upper(), className="total-info-label"),
+    #                 html.P(str(global_data[1][2]), className="total-info-data"),
+    #                 html.P("UPDATED AT", className="total-info-label"),
+    #                 html.P( global_data[2], className="total-info-date"),
+    #             ]
+    #         ),
+    #
+    #         html.Div(
+    #             className="total-graph",
+    #             children=[
+    #                 dcc.Graph(
+    #                     id='example-graph',
+    #                     figure={
+    #                         'data': [{
+    #                             'x': global_data[0],
+    #                             'y': global_data[1],
+    #                             'text': percentage_labels,
+    #                             'textposition':'auto',
+    #                             'type': 'bar',
+    #                             'name': 'Global',
+    #                             'marker': {'color': ['rgb(26, 118, 255)', 'rgb(177, 35, 5)', 'rgb(126, 170, 121)', 'rgb(255, 102, 0)']}
+    #                         },],
+    #                         'layout': {
+    #                             'annotations':'annotations'
+    #                         }
+    #                     },
+    #                 ),
+    #             ]
+    #         ),
+    #     ]
+    # ),
     
     html.Div(
         children = [
@@ -150,59 +150,59 @@ app.layout = html.Div([
                             )
                         ),
                         id='timeline-graph'
-                    )  
+                    )
                 ]
             )
         ]
     ),
-
-    html.Div(
-        children=[
-            dash_table.DataTable(
-                id='global-data-table',
-                columns=[
-                        {"name": i, "id": i, 'type': 'numeric', 'format': Format(group=',')} for i in datatable_dataframe.columns
-                    ],
-                data=datatable_dataframe.to_dict('records'),
-                filter_action="native",
-                sort_action="native",
-                sort_mode="multi",
-                style_cell={'textAlign': 'left'},
-                style_header={
-                    'fontWeight': 'bold'
-                },
-                # Zebra style / conditional cell format
-                style_data_conditional=[
-                    {
-                        'if': {'row_index': 'odd'},
-                        'backgroundColor': 'rgb(248, 248, 248)'
-                    },
-                    {
-                        'if': {'column_id': 'Country'},
-                        'fontWeight': 'bold'
-                    },
-                    {
-                        'if': {
-                            'column_id': 'Today Cases',
-                            'filter_query': '{Today Cases} != 0'
-                        },
-                        'backgroundColor': '#FFFBE5',
-                        'fontWeight': 'bold'
-                    },
-                    {
-                        'if': {
-                            'column_id': 'Today Deaths',
-                            'filter_query': '{Today Deaths} != 0'
-                        },
-                        'backgroundColor': '#FFE5E5',
-                        'color': '#B12305',
-                        'fontWeight': 'bold'
-                    },
-                ],
-            )
-        ],
-        className="data-table"
-    ), 
+    #
+    # html.Div(
+    #     children=[
+    #         dash_table.DataTable(
+    #             id='global-data-table',
+    #             columns=[
+    #                     {"name": i, "id": i, 'type': 'numeric', 'format': Format(group=',')} for i in datatable_dataframe.columns
+    #                 ],
+    #             data=datatable_dataframe.to_dict('records'),
+    #             filter_action="native",
+    #             sort_action="native",
+    #             sort_mode="multi",
+    #             style_cell={'textAlign': 'left'},
+    #             style_header={
+    #                 'fontWeight': 'bold'
+    #             },
+    #             # Zebra style / conditional cell format
+    #             style_data_conditional=[
+    #                 {
+    #                     'if': {'row_index': 'odd'},
+    #                     'backgroundColor': 'rgb(248, 248, 248)'
+    #                 },
+    #                 {
+    #                     'if': {'column_id': 'Country'},
+    #                     'fontWeight': 'bold'
+    #                 },
+    #                 {
+    #                     'if': {
+    #                         'column_id': 'Today Cases',
+    #                         'filter_query': '{Today Cases} != 0'
+    #                     },
+    #                     'backgroundColor': '#FFFBE5',
+    #                     'fontWeight': 'bold'
+    #                 },
+    #                 {
+    #                     'if': {
+    #                         'column_id': 'Today Deaths',
+    #                         'filter_query': '{Today Deaths} != 0'
+    #                     },
+    #                     'backgroundColor': '#FFE5E5',
+    #                     'color': '#B12305',
+    #                     'fontWeight': 'bold'
+    #                 },
+    #             ],
+    #         )
+    #     ],
+    #     className="data-table"
+    # ),
     
 ])
 

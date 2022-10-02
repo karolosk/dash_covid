@@ -11,6 +11,7 @@ def get_all_data():
 
     keys = []
     values = []
+    updated_at = 'N/A'
     try:
         response = requests.get("https://corona.lmao.ninja/v2/all")
 
@@ -33,7 +34,8 @@ def get_all_data():
                 # excluded keys : ['population', 'activePerOneMillion', 'continent','affectedCountries', 'casesPerOneMillion', 'testsPerOneMillion', 'tests', 'deathsPerOneMillion', 'todayDeaths', 'todayCases', 'critical']
         return [keys, values, updated_at]
     except Exception:
-        updated_at = datetime.fromtimestamp(value / 1000).strftime(
+
+        updated_at = datetime.now().strftime(
             "%Y-%m-%d %H:%M:%S GMT"
         )
         return [["N/A"], ["/NA"], updated_at]
